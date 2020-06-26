@@ -145,17 +145,17 @@ const classList = [
         abilities: [
             {
                 name: 'Royal Authority',
-                img: '',
+                img: 'https://img.finalfantasyxiv.com/lds/d/6858db3c06ec976d81553fcdf8a834f5b1241bd9.png',
                 damage: 3
             },
             {
                 name: 'Holy Circle',
-                img: '',
+                img: 'https://img.finalfantasyxiv.com/lds/d/3badbc44e5cd3de4e95e2d8f613a6041f0ff87e9.png',
                 damage: 2
             },
             {
                 name: 'Atonement',
-                img: '',
+                img: 'https://img.finalfantasyxiv.com/lds/d/c59f597216e3b58d3eadd890b0b79c1fcbfb3dbf.png',
                 damage: 4
             }
         ]

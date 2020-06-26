@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   height: 95vh;
-  width: 60vw;
+  width: 45vw;
   background: lightblue;
 }
 
@@ -23,6 +23,7 @@ h1 {
   font-weight: bold;
 }
 
+/* Enemy Styling */
 .encounter-window {
   margin-top: 10px;
   height: 35%;
@@ -36,7 +37,7 @@ h1 {
   height: 100%;
   width: 100%;
   display: flex;
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -46,8 +47,9 @@ h1 {
   height: 95%;
 }
 
+/* Character Styling */
 .character-section {
-  margin-top: 70px;
+  margin-top: 40px;
   width: 90%;
   height: 50%;
   background: green;
@@ -63,9 +65,13 @@ h1 {
 .character-info {
   margin-top: 3.5%;
   margin-left: 20px;
-  width: 300px;
+  width: 45%;
   height: 400px;
   background: greenyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .character-image {
@@ -73,6 +79,36 @@ h1 {
   margin-right: 20px;
   width: 40%;
   height: 400px;
+  background: rgb(64, 155, 207);
+}
+
+h2 {
+  font-size: 25px;
+  /* margin-top: 10px; */
+}
+
+.character-stats {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.character-stats ul {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 100px;
+  background-color: lightsalmon;
+  justify-content: space-around;
+  padding-left: 5px;
+}
+
+.character-abilities {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 

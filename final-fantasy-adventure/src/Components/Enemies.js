@@ -6,26 +6,32 @@ class Enemies extends Component {
         super(props)
         this.state = {
             monsterList: [],
-            hasLoaded: false
+            maxHealth: 0,
+            hasLoaded: false,
         }
     }
 
     componentDidMount() {
         axios.get('/api/encounter-list')
         .then(res => {
-          this.setState({monsterList: res.data, hasLoaded: true})
+          this.setState({monsterList: res.data, maxHealth: res.data[this.props.monsterIndex].health, hasLoaded: true})
         })
         .catch(err => console.log(err))
     }
 
+    
+
     render() {
         console.log(this.state.monsterList);
+        console.log(this.props.monsterIndex);
         return (
             <div>                
                 {this.state.hasLoaded
                 ? (
                     <div className='enemy-box'>
-                        <img className='enemy-image' src={this.state.monsterList[0].img} alt={this.state.monsterList[0].name} />
+                        <img className='enemy-image' src={this.state.monsterList[this.props.monsterIndex].img} alt={this.state.monsterList[this.props.monsterIndex].name} />
+                        <p>Health:</p>
+                        <p>{this.state.monsterList[this.props.monsterIndex].health}/{this.state.maxHealth} </p>
                     </div>
                 )
                 : null
