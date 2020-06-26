@@ -31,6 +31,6 @@ module.exports = {
         res.status(200).send(classList);
     },
     getEnemyEncounter: (req, res) => {
-        res.status(200).send(enemyEncounter());
+        res.status(200).send(populatedMonsters());
     }
 }
