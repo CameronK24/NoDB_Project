@@ -111,4 +111,14 @@ h2 {
   justify-content: space-around;
 }
 
+.character-abilities img {
+  border-radius: 10px;
+  transition: .25s;
+}
 
+.character-abilities img:hover {
+  filter: brightness(150%);
+}
+.character-abilities img:active {
+  filter: brightness(50%);
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import Enemies from './Components/Enemies';
 import Character from './Components/Character';
+import Header from './Components/Header';
 import './reset.css';
 import './App.css';
 
@@ -9,31 +10,37 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      damage: 0,
-      index: 0
+      damage: 0
+      
     }
   }
 
-  cycleThroughEnemies = () => {
-    if (this.state.index === 9) {
-      this.setState({index: 0});
-    }
-    else {
-      this.setState({index: ++this.state.index})
-    }    
+  resetDamage = () => {
+    this.setState({damage: 0});
+  }
+
+  dealDamage = (abilityDamage) => {
+    this.setState({damage: abilityDamage})    
   }
 
   render() {
+    console.log(this.state.damage);
     return (
       <div className="App">
         <section className='game-window'>
-          <h1>SET SAIL FOR ADVENTURE!</h1>
+          <Header />
           <section className='encounter-window'>
-            <Enemies monsterIndex={this.state.index} />
+            <Enemies               
+              damage={this.state.damage}
+              dealDamageFn={this.dealDamage}
+              resetDamageFn={this.resetDamage} />
           </section>
-          <button onClick={this.cycleThroughEnemies} >Cycle Through</button>
+          
           <section className='character-section'>
-            <Character />
+            <Character 
+              damage={this.state.damage} 
+              dealDamageFn={this.dealDamage}
+              resetDamageFn={this.resetDamage} />
           </section>                        
         </section>
       </div>
