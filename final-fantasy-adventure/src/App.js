@@ -14,16 +14,24 @@ class App extends Component {
       playerAbilityDamage: 0,
       enemyAbilityDamage: 0,
       newPlayerHealth: 0,
-      newEnemyHealth: 0      
+      newEnemyHealth: 0,
+      turnEnded: false,
+      turnDisabled: true,
+      currentMonster: []      
     }
   }
 
+  addCurrentMonster = (monster) => {
+    this.setState({currentMonster: monster});
+  }
+
   resetDamage = () => {
-    this.setState({playerAbilityDamage: 0, enemyAbilityDamage: 0});
+    this.setState({playerAbilityDamage: 0});
   }
 
   playerDealDamage = (abilityDamage) => {
-    this.setState({playerAbilityDamage: abilityDamage})    
+    this.setState({playerAbilityDamage: abilityDamage})
+    this.updateTurnButton(false);    
   }
 
   enemyDealDamage = (abilityDamage) => {
@@ -38,10 +46,19 @@ class App extends Component {
     this.setState({newPlayerHealth: value});
   }
 
+  updatedTurns = () => {
+    this.setState({turnEnded: !this.state.turnEnded});
+  }
+
+  updateTurnButton = (val) => {
+    this.setState({turnDisabled: val})
+  }
+
   render() {
     // console.log(this.state.damage);
     // console.log(this.state.enemyAbilityDamage);
     // console.log(this.state.playerAbilityDamage); 
+    // console.log(this.state.currentMonster);
     return (
       <div className="App">
         <section className='game-window'>
@@ -50,19 +67,29 @@ class App extends Component {
             <Enemies               
               damage={this.state.enemyAbilityDamage}
               newHealth={this.state.newEnemyHealth}
-              dealDamageFn={this.enemyDealDamage} />
+              turnEnded={this.state.turnEnded}
+              dealDamageFn={this.enemyDealDamage}
+              isTurnEnded={this.updatedTurns}
+              addMonsterFn={this.addCurrentMonster} 
+              currentMonster={this.state.currentMonster}
+              turnButton={this.state.turnDisabled} />
           </section>
           <HandleDamage 
             playerAbilityDamage={this.state.playerAbilityDamage}
             enemyAbilityDamage={this.state.enemyAbilityDamage}
             updateEnemyHealthFn={this.updateEnemyHealth}
             updatePlayerHealthFn={this.updatePlayerHealth}
-            resetDamageFn={this.resetDamage} />
+            resetDamageFn={this.resetDamage}
+            isTurnEnded={this.updatedTurns}
+            turnButton={this.state.turnDisabled}
+            turnButtonFn={this.updateTurnButton} />
           <section className='character-section'>
             <Character 
               damage={this.state.playerAbilityDamage}
               newHealth={this.state.newPlayerHealth} 
-              dealDamageFn={this.playerDealDamage} />
+              turnEnded={this.state.turnEnded}
+              dealDamageFn={this.playerDealDamage}
+              isTurnEnded={this.updatedTurns}/>
           </section>                        
         </section>
       </div>

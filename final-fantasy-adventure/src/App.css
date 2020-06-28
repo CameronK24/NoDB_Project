@@ -126,3 +126,25 @@ h2 {
 .character-abilities img:active {
   filter: brightness(50%);
 }
+
+.health-area {
+  display: flex;
+  width: 30%;
+  height: 70%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.health-area img {
+  width: 100%;
+  margin-top: 43px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.health-area img:hover {
+  filter: brightness(150%);
+}
+.health-area img:active {
+  filter: brightness(50%);
+}

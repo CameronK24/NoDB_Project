@@ -14,7 +14,7 @@ class Character extends Component {
     }
 
     getCharacterInfo = (firstUpdate) => {
-        if (firstUpdate) {
+        if (firstUpdate === true) {
             axios.get('/api/class-list')
             .then(res => {
                 this.setState({characterList: res.data, maxHealth: res.data[0].health, hasLoaded: true})
@@ -40,7 +40,23 @@ class Character extends Component {
         }        
     }
 
+    checkTurn = () => {
+        if (this.props.turnEnded === true) {
+            this.getCharacterInfo();
+        }
+    }
+
+    heal = () => {
+        let body = {damage: 20}
+        axios.put('/api/damage/0&heal', body)
+        .then(res => {
+            this.setState({characterList: res.data});
+        })
+        .catch(err => console.log(err));
+    }
+
     render() {
+        this.checkTurn();
         return (
             <div>
                 {this.state.hasLoaded
@@ -48,7 +64,8 @@ class Character extends Component {
                         <ManageCharacter 
                             character={this.state.characterList} 
                             maxHealth={this.state.maxHealth} 
-                            dealDamageFn={this.props.dealDamageFn} />                             
+                            dealDamageFn={this.props.dealDamageFn} 
+                            healDamageFn={this.heal}/>                             
                     )
                     : null
                 }                

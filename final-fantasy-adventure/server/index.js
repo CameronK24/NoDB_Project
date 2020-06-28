@@ -9,6 +9,7 @@ app.use(express.json());
 app.get('/api/encounter/:i', encounterCtrl.getEnemyEncounter)
 app.get('/api/class-list', encounterCtrl.getClassList);
 app.put('/api/damage/:i&:type', encounterCtrl.updatedHealth);
+app.delete('/api/remove-enemy/:i', encounterCtrl.deleteEnemy);
 
 app.listen(4040, () => console.log('Server running on 4040'));
 

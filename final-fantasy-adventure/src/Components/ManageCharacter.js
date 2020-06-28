@@ -12,15 +12,18 @@ const ManageCharacter = props => {
                             <li>Intellect: 13</li>
                             <li>Speed: 10</li>
                         </ul>
-                        <span>
-                            <p>Health:</p> 
-                            <p>{props.character[0].health}/{props.maxHealth}</p>
+                        <span className='health-area'>
+                            <section>
+                                <p>Health:</p> 
+                                <p>{props.character[0].health}/{props.maxHealth}</p>
+                            </section>
+                            <img src='https://ffxiv.gamerescape.com/w/images/d/d5/Potion_Icon.png' alt='Potion' onClick={() => props.healDamageFn()} />
                         </span>
                     </section>
                     <section className='character-abilities'>                        
                         <img src={props.character[0].abilities[0].img} alt={props.character[0].abilities[0].name} onClick={() => props.dealDamageFn(props.character[0].abilities[0].damage)} />
-                        <img src={props.character[0].abilities[1].img} alt={props.character[0].abilities[1].name} />
-                        <img src={props.character[0].abilities[2].img} alt={props.character[0].abilities[2].name} />
+                        <img src={props.character[0].abilities[1].img} alt={props.character[0].abilities[1].name} onClick={() => props.dealDamageFn(props.character[0].abilities[1].damage)} />
+                        <img src={props.character[0].abilities[2].img} alt={props.character[0].abilities[2].name} onClick={() => props.dealDamageFn(props.character[0].abilities[2].damage)} />
                     </section>
                 </div> 
                 <img className='character-image' src={props.character[0].img} alt={props.character[0].name} />                       

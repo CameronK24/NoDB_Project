@@ -15,7 +15,9 @@ class HandleDamage extends Component {
         let enemyRandDamage = Math.ceil(Math.random() * this.props.enemyAbilityDamage); 
         this.playerTakesDamage(enemyRandDamage);
         this.enemyTakesDamage(playerRandDamage);    
-        this.props.resetDamageFn();   
+        this.props.isTurnEnded();
+        this.props.turnButtonFn(true);
+        this.props.resetDamageFn();      
     }
 
     playerTakesDamage = (damageToTake) => {
@@ -43,7 +45,15 @@ class HandleDamage extends Component {
     render() {
         return (
             <div className='handle-damage'>
-                <button onClick={this.dealDamage}>End Turn</button>
+                {this.props.turnButton 
+                ? (
+                    <button onClick={this.dealDamage} disabled >End Turn</button>
+                )
+                : (
+                    <button onClick={this.dealDamage} >End Turn</button>
+                )
+                }
+                
             </div>
         )
     }

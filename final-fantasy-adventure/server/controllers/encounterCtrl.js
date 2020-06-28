@@ -35,12 +35,12 @@ module.exports = {
     updatedHealth: (req, res) => {
         const {i} = req.params;
         const {type} = req.params;
-        console.log(req.body);
+        // console.log(req.body);
         const {damage} = req.body;
 
         // console.log(currentEncounter);
 
-        console.log(i, type, damage);
+        // console.log(i, type, damage);
 
         if (type === 'character') {
             classList[i].health -= damage;
@@ -50,8 +50,19 @@ module.exports = {
             currentEncounter[i].health -= damage;
             res.status(200).send(currentEncounter[i]);
         }
+        else if (type === 'heal') {
+            classList[i].health = 20;
+            res.status(200).send(classList);
+        }
         else {
             res.status(200).send(`No data exists for ${type}`);
         }        
+    },
+    deleteEnemy: (req, res) => {
+        const {i} = req.params;
+
+        currentEncounter.splice(+i, 1);
+        console.log(currentEncounter);
+        res.status(200).send(currentEncounter[i]);
     }
 }
