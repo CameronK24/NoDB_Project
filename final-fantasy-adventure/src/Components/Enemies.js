@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DisplayEnemies from './DisplayEnemies'
 import axios from 'axios';
 
 class Enemies extends Component {
@@ -8,75 +9,66 @@ class Enemies extends Component {
             monster: [],
             maxHealth: 0,
             hasLoaded: false,
-            myTurn: false,
             index: 0
         }
     }
 
+    getMonsterInfo = () => {
+        axios.get(`/api/encounter/${this.state.index}`)
+        .then(res => {
+            // console.log('response: ' + res)
+            this.setState({monster: res.data, maxHealth: res.data.health, hasLoaded: true})
+        })
+        .catch(err => console.log(err))
+    }
+
     componentDidMount() {
         if (this.state.hasLoaded === false) {
-            axios.get(`/api/encounter/${this.state.index}`)
-            .then(res => {
-                // console.log('response: ' + res)
-                this.setState({monster: res.data, maxHealth: res.data.health, hasLoaded: true})
-            })
-            .catch(err => console.log(err))
+            this.getMonsterInfo();
         }
         else {
 
         }      
     }
 
-    cycleThroughEnemies = () => {
-    if (this.state.index === 10) {
-        this.setState({index: 0});
-    }
-    else {
-        axios.get(`/api/encounter/${this.state.index}`)
-        .then(res => {
-            this.setState({monster: res.data, maxHealth: res.data.health, index: ++this.state.index})
-        })
-        .catch(err => console.log(err))      
-    }    
+    componentDidUpdate() {
+        if (this.props.damage === 0) {
+            console.log('component did update: ' + this.state.monster.abilities[0].damage)
+            this.props.dealDamageFn(this.state.monster.abilities[0].damage)
+        }
     }
 
-    handleTurn = () => {
-        console.log('enemy turn');
-        if (this.state.myTurn === false && this.props.damage !== 0) {
-            let body = {damage: this.props.damage}
-            axios.put(`/api/damage/${this.state.index}&enemy`, body)
+    cycleThroughEnemies = () => {
+        if (this.state.index === 10) {
+            this.setState({index: 0});
+        }
+        else {
+            axios.get(`/api/encounter/${this.state.index}`)
             .then(res => {
-                console.log(res.data);
-                this.setState({monster: res.data, myTurn: true})
-                this.props.resetDamageFn();
+                this.setState({monster: res.data, maxHealth: res.data.health, index: ++this.state.index})
             })
-            .catch(err => console.log(err));       
-        }
-        else if (this.state.myTurn === true && this.props.damage === 0) {
-            let damageToDeal = this.state.monster.abilities[this.state.index].damage;
-            this.props.dealDamageFn(damageToDeal);
-            this.setState({myTurn: false});
-        }
+            .catch(err => console.log(err))      
+        }    
     }
 
     render() {
-        console.log(this.state.myTurn);
-        console.log(this.state.monster);
+        // console.log(this.state.myTurn);
+        // console.log(this.state.monster);
         // console.log(this.props.monsterIndex);
         return (
             <div>                
                 {this.state.hasLoaded
                 ? (
                     <div className='enemy-box'>
-                        <img className='enemy-image' src={this.state.monster.img} alt={this.state.monster.name} />
+                        {/* <img className='enemy-image' src={this.state.monster.img} alt={this.state.monster.name} />
                         <p>Health:</p>
-                        <p>{this.state.monster.health}/{this.state.maxHealth} </p>
-                        <button onClick={this.cycleThroughEnemies} >Cycle Through</button>
-                        {this.handleTurn}
+                        <p>{this.state.monster.health}/{this.state.maxHealth} </p> */}
+                        <DisplayEnemies monster={this.state.monster} maxHealth={this.state.maxHealth} />                                                                  
                     </div>
                 )
                 : null
-                }    
+                }   
+                <button onClick={this.cycleThroughEnemies} >Cycle Through</button>   
             </div>
         )
     }

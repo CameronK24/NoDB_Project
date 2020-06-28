@@ -16,4 +16,4 @@ app.listen(4040, () => console.log('Server running on 4040'));
 // console.log(encounterCtrl.bossEncounter)
 // console.log(encounterCtrl.classList)
 // console.log(encounterCtrl.enemyEncounter)
-console.log(encounterCtrl.currentEncounter)
+// console.log(encounterCtrl.currentEncounter)

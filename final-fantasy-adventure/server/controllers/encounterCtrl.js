@@ -35,15 +35,16 @@ module.exports = {
     updatedHealth: (req, res) => {
         const {i} = req.params;
         const {type} = req.params;
+        console.log(req.body);
         const {damage} = req.body;
 
         // console.log(currentEncounter);
 
-        // console.log(i, type, damage);
+        console.log(i, type, damage);
 
         if (type === 'character') {
             classList[i].health -= damage;
-            res.status(200).send(classList);
+            res.status(200).send(classList[i]);
         }
         else if (type === 'enemy') {
             currentEncounter[i].health -= damage;

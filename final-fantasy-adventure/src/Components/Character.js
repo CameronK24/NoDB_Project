@@ -10,12 +10,11 @@ class Character extends Component {
             characterList: [],
             maxHealth: 0,
             hasLoaded: false,
-            myTurn: true
         }
     }
 
-    componentDidMount() {
-        if (this.state.hasLoaded === false) {
+    getCharacterInfo = (firstUpdate) => {
+        if (firstUpdate) {
             axios.get('/api/class-list')
             .then(res => {
                 this.setState({characterList: res.data, maxHealth: res.data[0].health, hasLoaded: true})
@@ -23,26 +22,22 @@ class Character extends Component {
             .catch(err => console.log(err))
         }
         else {
-
-        }        
+            axios.get('/api/class-list')
+            .then(res => {
+                this.setState({characterList: res.data})
+            })
+            .catch(err => console.log(err))
+        }
+        
     }
 
-    handleTurn = (damageToDeal) => {
-        console.log('player turn');
-        if (this.state.myTurn === true) {
-            this.props.dealDamageFn(damageToDeal);
-            this.setState({myTurn: false})
+    componentDidMount() {
+        if (this.state.hasLoaded === false) {
+            this.getCharacterInfo(true);
         }
-        else if (this.state.myTurn === false && this.props.damage !== 0) {
-            let body = {damage: this.props.damage}
-            axios.put(`/api/damage/0&character`, body)
-            .then(res => {
-                console.log(res.data);
-                this.setState({characterList: res.data, myTurn: true})
-                this.props.resetDamageFn();
-            })
-            .catch(err => console.log(err));
-        }
+        else {
+
+        }        
     }
 
     render() {
@@ -53,8 +48,7 @@ class Character extends Component {
                         <ManageCharacter 
                             character={this.state.characterList} 
                             maxHealth={this.state.maxHealth} 
-                            handleTurnFn={this.handleTurn}
-                            myTurn={this.state.myTurn} />                             
+                            dealDamageFn={this.props.dealDamageFn} />                             
                     )
                     : null
                 }                

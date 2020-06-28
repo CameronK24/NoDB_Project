@@ -47,9 +47,13 @@ h1 {
   height: 95%;
 }
 
+.handle-damage {
+  margin-top: 30px;
+}
+
 /* Character Styling */
 .character-section {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   width: 90%;
   height: 50%;
   background: green;
