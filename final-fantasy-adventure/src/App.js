@@ -24,6 +24,10 @@ class App extends Component {
     }
   }
 
+  finishCreation = () => {
+    this.setState({createCharacter: false});
+  }
+
   addCurrentMonster = (monster) => {
     this.setState({currentMonster: monster});
   }
@@ -65,11 +69,11 @@ class App extends Component {
     return (
       <div className="App">
         <section className='game-window'>
-          {this.state.createCharacter 
+          {this.state.createCharacter === true 
           ? (
               <div className='game-window'>
                 <Header characterCreation={this.state.createCharacter} />
-                <CreateCharacter />
+                <CreateCharacter hasCreated={this.finishCreation} />
               </div>
           )
           : (

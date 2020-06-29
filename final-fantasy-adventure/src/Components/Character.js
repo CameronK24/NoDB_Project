@@ -15,14 +15,14 @@ class Character extends Component {
 
     getCharacterInfo = (firstUpdate) => {
         if (firstUpdate === true) {
-            axios.get('/api/class-list')
+            axios.get('/api/character')
             .then(res => {
-                this.setState({characterList: res.data, maxHealth: res.data[0].health, hasLoaded: true})
+                this.setState({characterList: res.data, maxHealth: res.data.health, hasLoaded: true})
             })
             .catch(err => console.log(err))
         }
         else {
-            axios.get('/api/class-list')
+            axios.get('/api/character')
             .then(res => {
                 this.setState({characterList: res.data})
             })

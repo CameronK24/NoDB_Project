@@ -15,13 +15,30 @@ class CreateCharacter extends Component {
     componentDidMount() {
         axios.get('/api/class-list')
         .then(res => {
-            this.setState({classlist: res.data, hasLoaded: true});
+            this.setState({classlist: res.data, hasLoaded: true});  
         })
         .catch(err => console.log(err))
     }
 
     handleInput = (val) => {
         this.setState({characterName: val})
+    }
+
+    handleCreate = () => {
+        const newCharacter = {
+            name: this.state.characterName,
+            img: this.state.classlist[0].img,
+            health: this.state.classlist[0].health,
+            abilities: this.state.classlist[0].abilities
+        }
+
+        console.log(newCharacter);
+        axios.post('/api/create-character', {newCharacter})
+        .then(res => {
+            alert(`${this.state.characterName} has been created!`);
+            this.props.hasCreated();
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -38,7 +55,7 @@ class CreateCharacter extends Component {
                                 <input placeholder='Character Name' 
                                     value={this.state.characterName}
                                     onChange={e => this.handleInput(e.target.value)} />
-                                <button>Finalize Creation</button>
+                                <button onClick={this.handleCreate} >Finalize Creation</button>
                             </div>                            
                         </section>
                         <section className='stats-and-abilities'>

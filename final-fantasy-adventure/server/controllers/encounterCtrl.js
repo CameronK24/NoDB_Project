@@ -5,7 +5,7 @@ const bestiary = require('./bestiaryCtrl')
 const monsterEncounter = bestiary.monsterList;
 const bossEncounter = bestiary.bossList;
 const classList = bestiary.classList;
-const character = '';
+let character = {};
 
 const populatedMonsters = () => {
     let monsters = [];
@@ -37,9 +37,9 @@ module.exports = {
         res.status(200).send(character);
     },
     createCharacter: (req, res) => {
-        const {myCharacter} = req.body;
+        const {newCharacter} = req.body;
 
-        character = myCharacter;
+        character = newCharacter;
         res.status(200).send(character);
     },
     updatedHealth: (req, res) => {
@@ -53,16 +53,16 @@ module.exports = {
         // console.log(i, type, damage);
 
         if (type === 'character') {
-            classList[i].health -= damage;
-            res.status(200).send(classList[i]);
+            character.health -= damage;
+            res.status(200).send(character);
         }
         else if (type === 'enemy') {
             currentEncounter[i].health -= damage;
             res.status(200).send(currentEncounter[i]);
         }
         else if (type === 'heal') {
-            classList[i].health = 20;
-            res.status(200).send(classList);
+            character.health = 20;
+            res.status(200).send(character);
         }
         else {
             res.status(200).send(`No data exists for ${type}`);
