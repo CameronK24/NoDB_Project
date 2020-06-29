@@ -7,7 +7,7 @@ const monsterList = [
         abilities: [            
             {
                 name: 'Tendril Whip',
-                damage: 3
+                damage: 2
             }            
         ]
     },
@@ -15,7 +15,7 @@ const monsterList = [
         id: 2,
         name: `Amalj'aa Lancer`,
         img: 'https://lh3.google.com/u/0/d/1k935WgWq2GGUOciWYiX_MElD6J-1_4bg=w1173-h936-iv1',
-        health: 10,
+        health: 20,
         abilities: [            
             {
                 name: 'Heavy Thrust',
@@ -27,11 +27,11 @@ const monsterList = [
         id: 3,
         name: 'Cactuar',
         img: 'https://lh3.google.com/u/0/d/1e8UHLV_6G-fh4TiDFxuhMyOv4eW2QtuK=w1173-h936-iv1',
-        health: 10,
+        health: 15,
         abilities: [            
             {
                 name: 'Thousand Needles',
-                damage: 6
+                damage: 10
             }            
         ]
     },
@@ -39,11 +39,11 @@ const monsterList = [
         id: 4,
         name: 'Megalocrab',
         img: 'https://lh3.google.com/u/0/d/1pJwdAUKqKe-hIT8ke6R7riSuJk6vUFXx=w1173-h936-iv1',
-        health: 10,
+        health: 25,
         abilities: [            
             {
                 name: 'Snipper Clip',
-                damage: 3
+                damage: 5
             }            
         ]
     },
@@ -51,7 +51,7 @@ const monsterList = [
         id: 5,
         name: 'Ixali',
         img: 'https://lh3.google.com/u/0/d/1KHMbUblgmnNE0IkMezPkNOASgU72eRZ0=w1173-h936-iv1',
-        health: 10,
+        health: 15,
         abilities: [            
             {
                 name: 'Aero',
@@ -63,11 +63,11 @@ const monsterList = [
         id: 6,
         name: 'Adamantoise',
         img: 'https://lh3.google.com/u/0/d/1hQHuEDJTkaUSCP4qOUORJ34JXOMQQdqi=w1173-h936-iv1',
-        health: 10,
+        health: 35,
         abilities: [            
             {
                 name: 'Turtle Stomp',
-                damage: 3
+                damage: 7
             }            
         ]
     },
@@ -75,11 +75,11 @@ const monsterList = [
         id: 7,
         name: 'Ahriman',
         img: 'https://lh3.google.com/u/0/d/118NfkDUO7pBy6ioSDfKJwpPWLu21o7lK=w1173-h936-iv1',
-        health: 10,
+        health: 20,
         abilities: [            
             {
                 name: 'Gaze',
-                damage: 3
+                damage: 4
             }            
         ]
     },
@@ -87,11 +87,11 @@ const monsterList = [
         id: 8,
         name: 'Coeurl',
         img: 'https://lh3.google.com/u/0/d/1AX5mYg_T-q93M1qkIigHe1FMBK1DEKUu=w1173-h936-iv1',
-        health: 10,
+        health: 15,
         abilities: [            
             {
                 name: 'Charged Whisker',
-                damage: 3
+                damage: 5
             }            
         ]
     },
@@ -99,11 +99,11 @@ const monsterList = [
         id: 9,
         name: 'Deathgaze',
         img: 'https://lh3.google.com/u/0/d/19tdZNNePZyR2bre1rOYl2Y6AEaGGSgAj=w1173-h936-iv1',
-        health: 10,
+        health: 35,
         abilities: [           
             {
                 name: 'Bombination',
-                damage: 3
+                damage: 7
             }            
         ]
     }
@@ -114,11 +114,11 @@ const bossList = [
         id: 1,
         name: 'Ravana',
         img: 'https://lh3.google.com/u/0/d/1FrexlP_nNVbY4E4bqLK9ZnOF9nrPa5JE=w1173-h936-iv1',
-        health: 20,
+        health: 50,
         abilities: [
             {
                 name: 'Slaughter',
-                damage: 6
+                damage: 10
             }        
         ]
     },
@@ -126,11 +126,11 @@ const bossList = [
         id: 1,
         name: 'Garuda',
         img: 'https://lh3.google.com/u/0/d/1FGAb8pORfJfH6zURgIYNGDdLj-Faggff=w1173-h936-iv1',
-        health: 20,
+        health: 50,
         abilities: [            
             {
                 name: 'Slipstream',
-                damage: 6
+                damage: 10
             }            
         ]
     }
@@ -146,17 +146,17 @@ const classList = [
             {
                 name: 'Royal Authority',
                 img: 'https://img.finalfantasyxiv.com/lds/d/6858db3c06ec976d81553fcdf8a834f5b1241bd9.png',
-                damage: 3
+                damage: 7
             },
             {
                 name: 'Holy Circle',
                 img: 'https://img.finalfantasyxiv.com/lds/d/3badbc44e5cd3de4e95e2d8f613a6041f0ff87e9.png',
-                damage: 2
+                damage: 5
             },
             {
                 name: 'Atonement',
                 img: 'https://img.finalfantasyxiv.com/lds/d/c59f597216e3b58d3eadd890b0b79c1fcbfb3dbf.png',
-                damage: 4
+                damage: 10
             }
         ]
     }
