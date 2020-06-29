@@ -4,8 +4,10 @@ import Enemies from './Components/Enemies';
 import Character from './Components/Character';
 import Header from './Components/Header';
 import HandleDamage from './Components/HandleDamage';
+import createCharacter from './Components/CreateCharacter';
 import './reset.css';
 import './App.css';
+import CreateCharacter from './Components/CreateCharacter';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class App extends Component {
       newEnemyHealth: 0,
       turnEnded: false,
       turnDisabled: true,
-      currentMonster: []      
+      currentMonster: [],
+      createCharacter: true      
     }
   }
 
@@ -62,35 +65,48 @@ class App extends Component {
     return (
       <div className="App">
         <section className='game-window'>
-          <Header />
-          <section className='encounter-window'>
-            <Enemies               
-              damage={this.state.enemyAbilityDamage}
-              newHealth={this.state.newEnemyHealth}
-              turnEnded={this.state.turnEnded}
-              dealDamageFn={this.enemyDealDamage}
-              isTurnEnded={this.updatedTurns}
-              addMonsterFn={this.addCurrentMonster} 
-              currentMonster={this.state.currentMonster}
-              turnButton={this.state.turnDisabled} />
-          </section>
-          <HandleDamage 
-            playerAbilityDamage={this.state.playerAbilityDamage}
-            enemyAbilityDamage={this.state.enemyAbilityDamage}
-            updateEnemyHealthFn={this.updateEnemyHealth}
-            updatePlayerHealthFn={this.updatePlayerHealth}
-            resetDamageFn={this.resetDamage}
-            isTurnEnded={this.updatedTurns}
-            turnButton={this.state.turnDisabled}
-            turnButtonFn={this.updateTurnButton} />
-          <section className='character-section'>
-            <Character 
-              damage={this.state.playerAbilityDamage}
-              newHealth={this.state.newPlayerHealth} 
-              turnEnded={this.state.turnEnded}
-              dealDamageFn={this.playerDealDamage}
-              isTurnEnded={this.updatedTurns}/>
-          </section>                        
+          {this.state.createCharacter 
+          ? (
+              <div className='game-window'>
+                <Header characterCreation={this.state.createCharacter} />
+                <CreateCharacter />
+              </div>
+          )
+          : (
+              <div className='game-window'>
+                <Header characterCreation={this.state.createCharacter}/>
+                <section className='encounter-window'>
+                  <Enemies               
+                    damage={this.state.enemyAbilityDamage}
+                    newHealth={this.state.newEnemyHealth}
+                    turnEnded={this.state.turnEnded}
+                    dealDamageFn={this.enemyDealDamage}
+                    isTurnEnded={this.updatedTurns}
+                    addMonsterFn={this.addCurrentMonster} 
+                    currentMonster={this.state.currentMonster}
+                    turnButton={this.state.turnDisabled} />
+                </section>
+                <HandleDamage 
+                  playerAbilityDamage={this.state.playerAbilityDamage}
+                  enemyAbilityDamage={this.state.enemyAbilityDamage}
+                  updateEnemyHealthFn={this.updateEnemyHealth}
+                  updatePlayerHealthFn={this.updatePlayerHealth}
+                  resetDamageFn={this.resetDamage}
+                  isTurnEnded={this.updatedTurns}
+                  turnButton={this.state.turnDisabled}
+                  turnButtonFn={this.updateTurnButton} />
+                <section className='character-section'>
+                  <Character 
+                    damage={this.state.playerAbilityDamage}
+                    newHealth={this.state.newPlayerHealth} 
+                    turnEnded={this.state.turnEnded}
+                    dealDamageFn={this.playerDealDamage}
+                    isTurnEnded={this.updatedTurns}/>
+                </section>
+              </div>
+            )
+          }
+                                  
         </section>
       </div>
     );

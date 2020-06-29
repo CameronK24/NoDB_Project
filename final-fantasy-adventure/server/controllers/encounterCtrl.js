@@ -5,6 +5,7 @@ const bestiary = require('./bestiaryCtrl')
 const monsterEncounter = bestiary.monsterList;
 const bossEncounter = bestiary.bossList;
 const classList = bestiary.classList;
+const character = '';
 
 const populatedMonsters = () => {
     let monsters = [];
@@ -31,6 +32,15 @@ module.exports = {
         // console.log(currentEncounter[i]);
 
         res.status(200).send(currentEncounter[i]);
+    },
+    getCharacter: (req, res) => {
+        res.status(200).send(character);
+    },
+    createCharacter: (req, res) => {
+        const {myCharacter} = req.body;
+
+        character = myCharacter;
+        res.status(200).send(character);
     },
     updatedHealth: (req, res) => {
         const {i} = req.params;
